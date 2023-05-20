@@ -1,0 +1,67 @@
+= Hello World
+
+1. Generate Go Module
++
+[tabs]
+======
+Go::
++
+====
+[source, sh]
+----
+go mod init example/hello <1>
+----
+<1> Generate a Go module footnote:[This `mvn archetype generate`].
+
+This will create a `go.mod` file which defines your module and declares its dependencies footnote:[Think `pom.xml`].
+
+[source]
+----
+module example/hello <1>
+
+go 1.20 <2>
+----
+<1> The name of the module as mentioned in the `go mod init` command.
+<2> The Go version used in the `go mod init` command. +
+This is the version that is installed in the path indicated by the `GOROOT` environment variable.
+====
+
+Java::
++
+====
+[source, sh]
+----
+mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+----
+====
+======
+
+2. Implement the program
++
+====
+[source]
+----
+package main <1>
+
+import "fmt" <2>
+
+func main() { <3>
+    fmt.Println("Hello, World!")
+}
+----
+<1> Declare the `main` package footnote:[This `package main;`].
+<2> Import the https://pkg.go.dev/fmt[`fmt` package] for I/O formatting. +
+This is one of the https://pkg.go.dev/std[standard packages] that is bundled with the SDK footnote:[Think `java.lang`].
+<3> Declare `main` function footnote:[Think `public static void main`]. +
+The `main` function executes by default when you run the `main` package.
+====
+
+3. Run the program
++
+====
+[source, sh]
+----
+go run . <1>
+----
+<1> Runs the program footnote:[Think `java ...`]
+====

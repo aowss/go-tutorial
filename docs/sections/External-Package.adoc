@@ -1,0 +1,79 @@
+= External package
+
+1. Generate Go Module
+2. Search packages
++
+====
+Go packages are listed on the https://pkg.go.dev/ website footnote:[Think Maven central].
+
+image::Package-Overview.png[role="thumb"]
+
+The specific package page, e.g. https://pkg.go.dev/rsc.io/quote@v1.5.2, documents the functions footnote:[Think Javadoc] and the repository from which it can be downloaded footnote:[Think Maven coordinates].
+
+image::Package-Details.png[role="thumb"]
+====
+
+3. Implement the program
++
+====
+[source]
+----
+package main
+
+import "fmt"
+import "rsc.io/quote" <1>
+
+func main() {
+    fmt.Println(quote.Go()) <2>
+}
+----
+<1> Import the external module using the module name footnote:[Think `import java.io.*;`].
+<2> Use the `Go` function footnote:[Think `File.listRoot();`].
+====
+
+4. Add external module requirement
++
+====
+[source]
+----
+go mod tidy
+----
+
+This will:
+
+. add the dependency and its transitive dependencies to the `go.mod` file,
++
+[source]
+----
+module example/external-package
+
+go 1.20
+
+require rsc.io/quote v1.5.2 <1>
+
+require (
+	golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c // indirect <2>
+	rsc.io/sampler v1.3.0 // indirect <2>
+)
+----
+<1> Declaring the external dependency footnote:[This Maven `dependencies` in the `pom.xml` file]. +
+By default, this will use the latest version footnote:[Think Maven `LATEST` keyword.]
+<2> Declaring the transitive dependencies of this dependency footnote:[Maven doesn't add that to the `pom.xml` file]
+. donwload the dependency and its dependencies,
++
+[source, sh]
+----
+go: finding module for package rsc.io/quote <1>
+go: downloading rsc.io/quote v1.5.2 <2>
+go: found rsc.io/quote in rsc.io/quote v1.5.2 <3>
+go: downloading rsc.io/sampler v1.3.0 <4>
+go: downloading golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c <4>
+----
+<1> Go looks for the dependency in https://pkg.go.dev/ footnote:[Think Maven repository].
+<2> Go downloads the dependency to the local Go repository specified by the `GOPATH` environment variable footnote:[Think Maven downloading dependencies to the local `.m2` folder].
+<3> Go finds the transitive dependencies in the package's `go.mod` file footnote:[Think Maven scanning the dependencies' `pom.xml` files].
+<4> Go downloads the transitive dependencies.
+. create a `go.sum` file for authentication.
+====
+
+5. Run the program

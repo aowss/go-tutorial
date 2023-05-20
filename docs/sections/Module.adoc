@@ -1,0 +1,53 @@
+= Module
+
+Go code is grouped into packages, and packages are grouped into modules. +
+Your module specifies dependencies needed to run your code, including the Go version and the set of other modules it requires.
+
+== Create a module
+
+You create a module using the https://go.dev/ref/mod#go-mod-init[`go mod init` command]: `go mod init` module_path footnote:[The module path must be a path from which the module can be downloaded by Go tools].
+
+[tabs]
+======
+Go::
++
+====
+[source, go]
+----
+package greeting
+
+import "fmt"
+
+func Hello(name string) string { <1>
+    message := fmt.Sprintf("Hi, %v. Welcome!", name) <2>
+    return message
+}
+----
+<1> A function whose name starts with a capital letter can be called by a function that is not in the same package. +
+This is known as an exported name.
+<2> `:=` declares and initializes a variable in one line. +
+The type is inferred. +
+This is an alternative to : +
+`var message string` +
+`message = fmt.Sprintf("Hi, %v. Welcome!", name)`
+====
+
+Java::
++
+====
+[source, java]
+----
+package greeting;
+
+public class Hello {
+    static String hello(name String) {
+        var message = String.format("Hi, %s. Welcome!", name);
+        return message;
+    }
+}
+----
+====
+======
+
+== Call the code from another module
+

@@ -1,0 +1,33 @@
+:Author:                Aowss Ibrahim
+:Email:                 <aowss@yahoo.com>
+:Date:                  May 2023
+:Revision:              version 0.1.0
+:source-highlighter:    highlightjs
+:source-language:       go
+:imagesdir:             ./res
+:toc2:
+:toclevels:             5
+:icons:                 font
+:data-uri:
+
+.HTML
+****
+The HTML version of this document is generated using http://asciidoctor.org/[AsciiDoctor]. +
+The command used is : `asciidoctor -r asciidoctor-tabs Go.adoc`.
+****
+
+This is a brief introduction to working with Go as a developer.
+
+include::sections/Features.adoc[leveloffset=+1]
+
+include::sections/Hello-World.adoc[leveloffset=+1]
+
+include::sections/External-Package.adoc[leveloffset=+1]
+
+include::sections/Module.adoc[leveloffset=+1]
+
+== Resources
+
+* https://go.dev/doc/tutorial/getting-started[Tutorial: Get started with Go]
+* https://go.dev/doc/tutorial/create-module[Tutorial: Create a Go module]
+* https://www.infoworld.com/article/3198928/whats-the-go-programming-language-really-good-for.html[What’s the Go programming language really good for?]

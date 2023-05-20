@@ -1,0 +1,14 @@
+= Features
+
+* Portable footnote:[The Go toolchain is used to compile binaries to different platforms]
+* Statically typed
+* Compiled
+* Automatic memory management
+* Built-in support for concurrency through goroutines
+* Ability to call external C functions
+* Generics were added recently footnote:[version `1.18`]
+
+
+== Cons
+
+* Large binaries
