@@ -5,14 +5,24 @@ Your module specifies dependencies needed to run your code, including the Go ver
 
 == Create a module
 
-You create a module using the https://go.dev/ref/mod#go-mod-init[`go mod init` command]: `go mod init` module_path footnote:[The module path must be a path from which the module can be downloaded by Go tools].
+You create a module using the https://go.dev/ref/mod#go-mod-init[`go mod init`] command: `go mod init` module_path.
+
+The module path must be a path from which the module can be downloaded by Go tools. +
+It identifies the module and acts as a prefix for package import paths within the module.
 
 [tabs]
 ======
 Go::
 +
 ====
+[source, sh]
+.Create the module
+----
+go mod init example.com/greetings
+----
+
 [source, go]
+.Implement the functionality
 ----
 package greeting
 
@@ -51,3 +61,34 @@ public class Hello {
 
 == Call the code from another module
 
+[tabs]
+======
+Go::
++
+====
+[source, sh]
+.Create the module
+----
+go mod init example.com/hello
+----
+
+[source, go]
+.Implement the functionality
+----
+package main <1>
+
+import (
+    "fmt"
+    "example.com/greetings"
+)
+
+func main() {
+    message := greetings.Hello("Aowss")
+    fmt.Println(message)
+}
+----
+<1> Executable code must be in the `main` package
+====
+
+Java::
+======

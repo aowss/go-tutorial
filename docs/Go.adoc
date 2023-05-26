@@ -9,8 +9,10 @@
 :toclevels:             5
 :icons:                 font
 :data-uri:
+:tabs-sync-option:
 
-This is a brief introduction to working with Go as a developer.
+This is a version of the https://go.dev/doc/tutorial/[Go Tutorials] for Java developers. +
+It follows the same examples as the original tutorial but gives an equivalent of the examples using https://www.java.com/en/[Java] and https://maven.apache.org/[Maven].
 
 include::sections/Features.adoc[leveloffset=+1]
 

@@ -6,16 +6,16 @@
 ======
 Go::
 +
-====
 [source, sh]
 ----
 go mod init example/hello <1>
 ----
-<1> Generate a Go module footnote:[This `mvn archetype generate`].
-
-This will create a `go.mod` file which defines your module and declares its dependencies footnote:[Think `pom.xml`].
-
-[source]
+<1> Generate a Go module.
++
+This will create a `go.mod` file which defines your module and declares its dependencies.
++
+[source, sh]
+.`go.mod`
 ----
 module example/hello <1>
 
@@ -24,22 +24,53 @@ go 1.20 <2>
 <1> The name of the module as mentioned in the `go mod init` command.
 <2> The Go version used in the `go mod init` command. +
 This is the version that is installed in the path indicated by the `GOROOT` environment variable.
-====
 
 Java::
 +
-====
 [source, sh]
 ----
-mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false <1>
 ----
-====
+<1> Generate a sample Maven project
++
+This will generate a `pom.xml` file which defines the project and declares its dependencies.
++
+[source, xml]
+.Extract from `pom.xml`
+----
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.micasa.tutorials</groupId>
+    <artifactId>example.go</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>example.go</name>
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target> <1>
+        <maven.compiler.source>1.8</maven.compiler.source> <1>
+    </properties>
+</project>
+----
+<1> The java version has been added
+
+Java Single-File::
++
+In 2018, Java 11 added the ability to https://openjdk.org/jeps/330[launch single-file source-code programs]. +
+This allows you to just run a file as if it were already compiled.
+
+Java Unnamed Classes::
++
+In 2023, Java 21 will add https://openjdk.org/jeps/445[unnamed classes] to simplify first Java programs.
 ======
 
 2. Implement the program
 +
-====
-[source]
+[tabs]
+======
+Go::
++
+[source, go]
+.`hello.go`
 ----
 package main <1>
 
@@ -49,19 +80,101 @@ func main() { <3>
     fmt.Println("Hello, World!")
 }
 ----
-<1> Declare the `main` package footnote:[This `package main;`].
+<1> Declare the `main` package.
 <2> Import the https://pkg.go.dev/fmt[`fmt` package] for I/O formatting. +
-This is one of the https://pkg.go.dev/std[standard packages] that is bundled with the SDK footnote:[Think `java.lang`].
-<3> Declare `main` function footnote:[Think `public static void main`]. +
+This is one of the https://pkg.go.dev/std[standard packages] that is bundled with the SDK.
+<3> Declare `main` function. +
 The `main` function executes by default when you run the `main` package.
-====
+
+Java::
++
+[source, java]
+.`Hello.java`
+----
+package com.micasa.tutorials; <1>
+
+<2>
+
+public class Hello { <4>
+    public static void main(String[] args) { <3>
+        System.out.println( "Hello World!" );
+    }
+}
+----
+<1> The package can be anything
+<2> `System` is part of the `java.lang` package. +
+This pacakge is bundled with the JDK and doesn't need to be imported.
+<3> The `main` method is the entry point of you program
+<4> In Java, everything is enclosed in a class
+
+Java Single-File::
++
+[source, java]
+.`Hello.java`
+----
+<1>
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println( "Hello World!" );
+    }
+}
+----
+<1> No package
+
+Java Unnamed Classes::
++
+[source, java]
+.`Main.java`
+----
+<1>
+void main() { <2>
+    System.out.println( "Hello World!" );
+}
+----
+<1> No class declaration
+<2> Simplified `main` method
+======
 
 3. Run the program
 +
-====
+[tabs]
+======
+Go::
++
 [source, sh]
 ----
 go run . <1>
 ----
-<1> Runs the program footnote:[Think `java ...`]
-====
+<1> Runs the program
+
+Java::
++
+[source, sh]
+----
+mvn compile <1>
+    exec:java -Dexec.mainClass="com.micasa.tutorials.Hello" <2> <3>
+----
+<1> Compiles the code. +
+The code is output to the `target` directory.
+<2> Uses the https://www.mojohaus.org/exec-maven-plugin/[Exec Maven Plugin] to run the `main` method
+<3> This command must be run from the directory that contains the `pom.xml` file
+
+Java Single-File::
++
+[source, sh]
+----
+java Hello.java <1> <2>
+----
+<1> Compiles the file, stores the bytecode in memory and runs the program
+<2> This command must be run from the directory that contains the `Hello.java` file
+
+Java Unnamed Classes::
++
+[source, sh]
+----
+java Main.java <1> <2>
+----
+<1> Compiles the file, stores the bytecode in memory and runs the program
+<2> This command must be run from the directory that contains the `Hello.java` file
+======

@@ -564,17 +564,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sidebarblock">
-<div class="content">
-<div class="title">HTML</div>
 <div class="paragraph">
-<p>The HTML version of this document is generated using <a href="http://asciidoctor.org/">AsciiDoctor</a>.<br>
-The command used is : <code>asciidoctor -r asciidoctor-tabs Go.adoc</code>.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This is a brief introduction to working with Go as a developer.</p>
+<p>This is a version of the <a href="https://go.dev/doc/tutorial/">Go Tutorials</a> for Java developers.<br>
+It follows the same examples as the original tutorial but gives an equivalent of the examples using <a href="https://www.java.com/en/">Java</a> and <a href="https://maven.apache.org/">Maven</a>.</p>
 </div>
 <div class="sect1">
 <h2 id="_features">Features</h2>
@@ -623,7 +615,7 @@ The command used is : <code>asciidoctor -r asciidoctor-tabs Go.adoc</code>.</p>
 <ol class="arabic">
 <li>
 <p>Generate Go Module</p>
-<div id="_tabs_1" class="openblock tabs is-loading">
+<div id="_tabs_1" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
@@ -633,11 +625,15 @@ The command used is : <code>asciidoctor -r asciidoctor-tabs Go.adoc</code>.</p>
 <li id="_tabs_1_java" class="tab">
 <p>Java</p>
 </li>
+<li id="_tabs_1_java_single_file" class="tab">
+<p>Java Single-File</p>
+</li>
+<li id="_tabs_1_java_unnamed_classes" class="tab">
+<p>Java Unnamed Classes</p>
+</li>
 </ul>
 </div>
 <div id="_tabs_1_go--panel" class="tabpanel" aria-labelledby="_tabs_1_go">
-<div class="exampleblock">
-<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go mod init example/hello <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
@@ -647,16 +643,17 @@ The command used is : <code>asciidoctor -r asciidoctor-tabs Go.adoc</code>.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Generate a Go module <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup>.</td>
+<td>Generate a Go module.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>This will create a <code>go.mod</code> file which defines your module and declares its dependencies <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup>.</p>
+<p>This will create a <code>go.mod</code> file which defines your module and declares its dependencies.</p>
 </div>
 <div class="listingblock">
+<div class="title"><code>go.mod</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">module example/hello <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">module example/hello <i class="conum" data-value="1"></i><b>(1)</b>
 
 go 1.20 <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -675,17 +672,58 @@ This is the version that is installed in the path indicated by the <code>GOROOT<
 </table>
 </div>
 </div>
-</div>
-</div>
 <div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
-<div class="exampleblock">
-<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Generate a sample Maven project</td>
+</tr>
+</table>
 </div>
+<div class="paragraph">
+<p>This will generate a <code>pom.xml</code> file which defines the project and declares its dependencies.</p>
+</div>
+<div class="listingblock">
+<div class="title">Extract from <code>pom.xml</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;project&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;com.micasa.tutorials&lt;/groupId&gt;
+    &lt;artifactId&gt;example.go&lt;/artifactId&gt;
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;example.go&lt;/name&gt;
+    &lt;properties&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;/properties&gt;
+&lt;/project&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The java version has been added</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="_tabs_1_java_single_file--panel" class="tabpanel" aria-labelledby="_tabs_1_java_single_file">
+<div class="paragraph">
+<p>In 2018, Java 11 added the ability to <a href="https://openjdk.org/jeps/330">launch single-file source-code programs</a>.<br>
+This allows you to just run a file as if it were already compiled.</p>
+</div>
+</div>
+<div id="_tabs_1_java_unnamed_classes--panel" class="tabpanel" aria-labelledby="_tabs_1_java_unnamed_classes">
+<div class="paragraph">
+<p>In 2023, Java 21 will add <a href="https://openjdk.org/jeps/445">unnamed classes</a> to simplify first Java programs.</p>
 </div>
 </div>
 </div>
@@ -693,9 +731,27 @@ This is the version that is installed in the path indicated by the <code>GOROOT<
 </li>
 <li>
 <p>Implement the program</p>
-<div class="exampleblock">
+<div id="_tabs_2" class="openblock tabs is-sync is-loading">
 <div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_2_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_2_java_single_file" class="tab">
+<p>Java Single-File</p>
+</li>
+<li id="_tabs_2_java_unnamed_classes" class="tab">
+<p>Java Unnamed Classes</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_go--panel" class="tabpanel" aria-labelledby="_tabs_2_go">
 <div class="listingblock">
+<div class="title"><code>hello.go</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -710,27 +766,127 @@ func main() { <i class="conum" data-value="3"></i><b>(3)</b>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Declare the <code>main</code> package <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>.</td>
+<td>Declare the <code>main</code> package.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Import the <a href="https://pkg.go.dev/fmt"><code>fmt</code> package</a> for I/O formatting.<br>
-This is one of the <a href="https://pkg.go.dev/std">standard packages</a> that is bundled with the SDK <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnotedef_6" title="View footnote.">6</a>]</sup>.</td>
+This is one of the <a href="https://pkg.go.dev/std">standard packages</a> that is bundled with the SDK.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Declare <code>main</code> function <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup>.<br>
+<td>Declare <code>main</code> function.<br>
 The <code>main</code> function executes by default when you run the <code>main</code> package.</td>
 </tr>
 </table>
+</div>
+</div>
+<div id="_tabs_2_java--panel" class="tabpanel" aria-labelledby="_tabs_2_java">
+<div class="listingblock">
+<div class="title"><code>Hello.java</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.micasa.tutorials; <i class="conum" data-value="1"></i><b>(1)</b>
+
+<i class="conum" data-value="2"></i><b>(2)</b>
+
+public class Hello { <i class="conum" data-value="4"></i><b>(4)</b>
+    public static void main(String[] args) { <i class="conum" data-value="3"></i><b>(3)</b>
+        System.out.println( "Hello World!" );
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The package can be anything</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>System</code> is part of the <code>java.lang</code> package.<br>
+This pacakge is bundled with the JDK and doesn&#8217;t need to be imported.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>main</code> method is the entry point of you program</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>In Java, everything is enclosed in a class</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="_tabs_2_java_single_file--panel" class="tabpanel" aria-labelledby="_tabs_2_java_single_file">
+<div class="listingblock">
+<div class="title"><code>Hello.java</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><i class="conum" data-value="1"></i><b>(1)</b>
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println( "Hello World!" );
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>No package</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="_tabs_2_java_unnamed_classes--panel" class="tabpanel" aria-labelledby="_tabs_2_java_unnamed_classes">
+<div class="listingblock">
+<div class="title"><code>Main.java</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><i class="conum" data-value="1"></i><b>(1)</b>
+void main() { <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println( "Hello World!" );
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>No class declaration</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Simplified <code>main</code> method</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 </li>
 <li>
 <p>Run the program</p>
-<div class="exampleblock">
+<div id="_tabs_3" class="openblock tabs is-sync is-loading">
 <div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_3_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_3_java" class="tab">
+<p>Java</p>
+</li>
+<li id="_tabs_3_java_single_file" class="tab">
+<p>Java Single-File</p>
+</li>
+<li id="_tabs_3_java_unnamed_classes" class="tab">
+<p>Java Unnamed Classes</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_3_go--panel" class="tabpanel" aria-labelledby="_tabs_3_go">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go run . <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
@@ -740,9 +896,73 @@ The <code>main</code> function executes by default when you run the <code>main</
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Runs the program <sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="View footnote.">8</a>]</sup></td>
+<td>Runs the program</td>
 </tr>
 </table>
+</div>
+</div>
+<div id="_tabs_3_java--panel" class="tabpanel" aria-labelledby="_tabs_3_java">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mvn compile <i class="conum" data-value="1"></i><b>(1)</b>
+    exec:java -Dexec.mainClass="com.micasa.tutorials.Hello" <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Compiles the code.<br>
+The code is output to the <code>target</code> directory.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Uses the <a href="https://www.mojohaus.org/exec-maven-plugin/">Exec Maven Plugin</a> to run the <code>main</code> method</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This command must be run from the directory that contains the <code>pom.xml</code> file</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="_tabs_3_java_single_file--panel" class="tabpanel" aria-labelledby="_tabs_3_java_single_file">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java Hello.java <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Compiles the file, stores the bytecode in memory and runs the program</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This command must be run from the directory that contains the <code>Hello.java</code> file</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="_tabs_3_java_unnamed_classes--panel" class="tabpanel" aria-labelledby="_tabs_3_java_unnamed_classes">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java Main.java <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Compiles the file, stores the bytecode in memory and runs the program</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This command must be run from the directory that contains the <code>Hello.java</code> file</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -764,7 +984,7 @@ The <code>main</code> function executes by default when you run the <code>main</
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>Go packages are listed on the <a href="https://pkg.go.dev/" class="bare">https://pkg.go.dev/</a> website <sup class="footnote">[<a id="_footnoteref_9" class="footnote" href="#_footnotedef_9" title="View footnote.">9</a>]</sup>.</p>
+<p>Go packages are listed on the <a href="https://pkg.go.dev/" class="bare">https://pkg.go.dev/</a> website <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup>.</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -772,7 +992,7 @@ The <code>main</code> function executes by default when you run the <code>main</
 </div>
 </div>
 <div class="paragraph">
-<p>The specific package page, e.g. <a href="https://pkg.go.dev/rsc.io/quote@v1.5.2" class="bare">https://pkg.go.dev/rsc.io/quote@v1.5.2</a>, documents the functions <sup class="footnote">[<a id="_footnoteref_10" class="footnote" href="#_footnotedef_10" title="View footnote.">10</a>]</sup> and the repository from which it can be downloaded <sup class="footnote">[<a id="_footnoteref_11" class="footnote" href="#_footnotedef_11" title="View footnote.">11</a>]</sup>.</p>
+<p>The specific package page, e.g. <a href="https://pkg.go.dev/rsc.io/quote@v1.5.2" class="bare">https://pkg.go.dev/rsc.io/quote@v1.5.2</a>, documents the functions <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup> and the repository from which it can be downloaded <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>.</p>
 </div>
 <div class="imageblock thumb">
 <div class="content">
@@ -802,11 +1022,11 @@ func main() {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Import the external module using the module name <sup class="footnote">[<a id="_footnoteref_12" class="footnote" href="#_footnotedef_12" title="View footnote.">12</a>]</sup>.</td>
+<td>Import the external module using the module name <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnotedef_6" title="View footnote.">6</a>]</sup>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Use the <code>Go</code> function <sup class="footnote">[<a id="_footnoteref_13" class="footnote" href="#_footnotedef_13" title="View footnote.">13</a>]</sup>.</td>
+<td>Use the <code>Go</code> function <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup>.</td>
 </tr>
 </table>
 </div>
@@ -847,12 +1067,12 @@ require (
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Declaring the external dependency <sup class="footnote">[<a id="_footnoteref_14" class="footnote" href="#_footnotedef_14" title="View footnote.">14</a>]</sup>.<br>
-By default, this will use the latest version <sup class="footnote">[<a id="_footnoteref_15" class="footnote" href="#_footnotedef_15" title="View footnote.">15</a>]</sup></td>
+<td>Declaring the external dependency <sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="View footnote.">8</a>]</sup>.<br>
+By default, this will use the latest version <sup class="footnote">[<a id="_footnoteref_9" class="footnote" href="#_footnotedef_9" title="View footnote.">9</a>]</sup></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Declaring the transitive dependencies of this dependency <sup class="footnote">[<a id="_footnoteref_16" class="footnote" href="#_footnotedef_16" title="View footnote.">16</a>]</sup></td>
+<td>Declaring the transitive dependencies of this dependency <sup class="footnote">[<a id="_footnoteref_10" class="footnote" href="#_footnotedef_10" title="View footnote.">10</a>]</sup></td>
 </tr>
 </table>
 </div>
@@ -872,15 +1092,15 @@ go: downloading golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c <i class="c
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Go looks for the dependency in <a href="https://pkg.go.dev/" class="bare">https://pkg.go.dev/</a> <sup class="footnote">[<a id="_footnoteref_17" class="footnote" href="#_footnotedef_17" title="View footnote.">17</a>]</sup>.</td>
+<td>Go looks for the dependency in <a href="https://pkg.go.dev/" class="bare">https://pkg.go.dev/</a> <sup class="footnote">[<a id="_footnoteref_11" class="footnote" href="#_footnotedef_11" title="View footnote.">11</a>]</sup>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Go downloads the dependency to the local Go repository specified by the <code>GOPATH</code> environment variable <sup class="footnote">[<a id="_footnoteref_18" class="footnote" href="#_footnotedef_18" title="View footnote.">18</a>]</sup>.</td>
+<td>Go downloads the dependency to the local Go repository specified by the <code>GOPATH</code> environment variable <sup class="footnote">[<a id="_footnoteref_12" class="footnote" href="#_footnotedef_12" title="View footnote.">12</a>]</sup>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Go finds the transitive dependencies in the package&#8217;s <code>go.mod</code> file <sup class="footnote">[<a id="_footnoteref_19" class="footnote" href="#_footnotedef_19" title="View footnote.">19</a>]</sup>.</td>
+<td>Go finds the transitive dependencies in the package&#8217;s <code>go.mod</code> file <sup class="footnote">[<a id="_footnoteref_13" class="footnote" href="#_footnotedef_13" title="View footnote.">13</a>]</sup>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -914,24 +1134,35 @@ Your module specifies dependencies needed to run your code, including the Go ver
 <div class="sect2">
 <h3 id="_create_a_module">Create a module</h3>
 <div class="paragraph">
-<p>You create a module using the <a href="https://go.dev/ref/mod#go-mod-init"><code>go mod init</code> command</a>: <code>go mod init</code> module_path <sup class="footnote">[<a id="_footnoteref_20" class="footnote" href="#_footnotedef_20" title="View footnote.">20</a>]</sup>.</p>
+<p>You create a module using the <a href="https://go.dev/ref/mod#go-mod-init"><code>go mod init</code></a> command: <code>go mod init</code> module_path.</p>
 </div>
-<div id="_tabs_2" class="openblock tabs is-loading">
+<div class="paragraph">
+<p>The module path must be a path from which the module can be downloaded by Go tools.<br>
+It identifies the module and acts as a prefix for package import paths within the module.</p>
+</div>
+<div id="_tabs_4" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="_tabs_2_go" class="tab">
+<li id="_tabs_4_go" class="tab">
 <p>Go</p>
 </li>
-<li id="_tabs_2_java" class="tab">
+<li id="_tabs_4_java" class="tab">
 <p>Java</p>
 </li>
 </ul>
 </div>
-<div id="_tabs_2_go--panel" class="tabpanel" aria-labelledby="_tabs_2_go">
+<div id="_tabs_4_go--panel" class="tabpanel" aria-labelledby="_tabs_4_go">
 <div class="exampleblock">
 <div class="content">
 <div class="listingblock">
+<div class="title">Create the module</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go mod init example.com/greetings</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implement the functionality</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package greeting
 
@@ -963,7 +1194,7 @@ This is an alternative to :<br>
 </div>
 </div>
 </div>
-<div id="_tabs_2_java--panel" class="tabpanel" aria-labelledby="_tabs_2_java">
+<div id="_tabs_4_java--panel" class="tabpanel" aria-labelledby="_tabs_4_java">
 <div class="exampleblock">
 <div class="content">
 <div class="listingblock">
@@ -986,7 +1217,58 @@ public class Hello {
 </div>
 <div class="sect2">
 <h3 id="_call_the_code_from_another_module">Call the code from another module</h3>
+<div id="_tabs_5" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_5_go" class="tab">
+<p>Go</p>
+</li>
+<li id="_tabs_5_java" class="tab">
+<p>Java</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_5_go--panel" class="tabpanel" aria-labelledby="_tabs_5_go">
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Create the module</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go mod init example.com/hello</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implement the functionality</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package main <i class="conum" data-value="1"></i><b>(1)</b>
 
+import (
+    "fmt"
+    "example.com/greetings"
+)
+
+func main() {
+    message := greetings.Hello("Aowss")
+    fmt.Println(message)
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Executable code must be in the <code>main</code> package</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="_tabs_5_java--panel" class="tabpanel" aria-labelledby="_tabs_5_java">
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1018,63 +1300,42 @@ public class Hello {
 <a href="#_footnoteref_2">2</a>. version <code>1.18</code>
 </div>
 <div class="footnote" id="_footnotedef_3">
-<a href="#_footnoteref_3">3</a>. This <code>mvn archetype generate</code>
+<a href="#_footnoteref_3">3</a>. Think Maven central
 </div>
 <div class="footnote" id="_footnotedef_4">
-<a href="#_footnoteref_4">4</a>. Think <code>pom.xml</code>
+<a href="#_footnoteref_4">4</a>. Think Javadoc
 </div>
 <div class="footnote" id="_footnotedef_5">
-<a href="#_footnoteref_5">5</a>. This <code>package main;</code>
+<a href="#_footnoteref_5">5</a>. Think Maven coordinates
 </div>
 <div class="footnote" id="_footnotedef_6">
-<a href="#_footnoteref_6">6</a>. Think <code>java.lang</code>
+<a href="#_footnoteref_6">6</a>. Think <code>import java.io.*;</code>
 </div>
 <div class="footnote" id="_footnotedef_7">
-<a href="#_footnoteref_7">7</a>. Think <code>public static void main</code>
+<a href="#_footnoteref_7">7</a>. Think <code>File.listRoot();</code>
 </div>
 <div class="footnote" id="_footnotedef_8">
-<a href="#_footnoteref_8">8</a>. Think <code>java &#8230;&#8203;</code>
+<a href="#_footnoteref_8">8</a>. This Maven <code>dependencies</code> in the <code>pom.xml</code> file
 </div>
 <div class="footnote" id="_footnotedef_9">
-<a href="#_footnoteref_9">9</a>. Think Maven central
+<a href="#_footnoteref_9">9</a>. Think Maven <code>LATEST</code> keyword.
 </div>
 <div class="footnote" id="_footnotedef_10">
-<a href="#_footnoteref_10">10</a>. Think Javadoc
+<a href="#_footnoteref_10">10</a>. Maven doesn&#8217;t add that to the <code>pom.xml</code> file
 </div>
 <div class="footnote" id="_footnotedef_11">
-<a href="#_footnoteref_11">11</a>. Think Maven coordinates
+<a href="#_footnoteref_11">11</a>. Think Maven repository
 </div>
 <div class="footnote" id="_footnotedef_12">
-<a href="#_footnoteref_12">12</a>. Think <code>import java.io.*;</code>
+<a href="#_footnoteref_12">12</a>. Think Maven downloading dependencies to the local <code>.m2</code> folder
 </div>
 <div class="footnote" id="_footnotedef_13">
-<a href="#_footnoteref_13">13</a>. Think <code>File.listRoot();</code>
-</div>
-<div class="footnote" id="_footnotedef_14">
-<a href="#_footnoteref_14">14</a>. This Maven <code>dependencies</code> in the <code>pom.xml</code> file
-</div>
-<div class="footnote" id="_footnotedef_15">
-<a href="#_footnoteref_15">15</a>. Think Maven <code>LATEST</code> keyword.
-</div>
-<div class="footnote" id="_footnotedef_16">
-<a href="#_footnoteref_16">16</a>. Maven doesn&#8217;t add that to the <code>pom.xml</code> file
-</div>
-<div class="footnote" id="_footnotedef_17">
-<a href="#_footnoteref_17">17</a>. Think Maven repository
-</div>
-<div class="footnote" id="_footnotedef_18">
-<a href="#_footnoteref_18">18</a>. Think Maven downloading dependencies to the local <code>.m2</code> folder
-</div>
-<div class="footnote" id="_footnotedef_19">
-<a href="#_footnoteref_19">19</a>. Think Maven scanning the dependencies' <code>pom.xml</code> files
-</div>
-<div class="footnote" id="_footnotedef_20">
-<a href="#_footnoteref_20">20</a>. The module path must be a path from which the module can be downloaded by Go tools
+<a href="#_footnoteref_13">13</a>. Think Maven scanning the dependencies' <code>pom.xml</code> files
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-20 11:12:58 -0400
+Last updated 2023-05-24 14:01:06 -0400
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
