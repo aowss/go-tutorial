@@ -557,8 +557,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_create_a_module">Create a module</a></li>
 <li><a href="#_call_the_code_from_another_module">Call the code from another module</a></li>
+<li><a href="#_run_the_program">Run the program</a></li>
 </ul>
 </li>
+<li><a href="#_error_handling">Error Handling</a></li>
 <li><a href="#_resources">Resources</a></li>
 </ul>
 </div>
@@ -675,7 +677,11 @@ This is the version that is installed in the path indicated by the <code>GOROOT<
 <div id="_tabs_1_java--panel" class="tabpanel" aria-labelledby="_tabs_1_java">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mvn archetype:generate
+        -DarchetypeArtifactId=maven-archetype-quickstart
+        -DgroupId=com.micasa.tutorials
+        -DartifactId=example.go
+        -DinteractiveMode=false <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -791,7 +797,7 @@ The <code>main</code> function executes by default when you run the <code>main</
 
 public class Hello { <i class="conum" data-value="4"></i><b>(4)</b>
     public static void main(String[] args) { <i class="conum" data-value="3"></i><b>(3)</b>
-        System.out.println( "Hello World!" );
+        System.out.println("Hello World!");
     }
 }</code></pre>
 </div>
@@ -826,7 +832,7 @@ This pacakge is bundled with the JDK and doesn&#8217;t need to be imported.</td>
 
 public class Hello {
     public static void main(String[] args) {
-        System.out.println( "Hello World!" );
+        System.out.println("Hello World!");
     }
 }</code></pre>
 </div>
@@ -842,11 +848,11 @@ public class Hello {
 </div>
 <div id="_tabs_2_java_unnamed_classes--panel" class="tabpanel" aria-labelledby="_tabs_2_java_unnamed_classes">
 <div class="listingblock">
-<div class="title"><code>Main.java</code></div>
+<div class="title"><code>Hello.java</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"><i class="conum" data-value="1"></i><b>(1)</b>
 void main() { <i class="conum" data-value="2"></i><b>(2)</b>
-    System.out.println( "Hello World!" );
+    System.out.println("Hello World!");
 }</code></pre>
 </div>
 </div>
@@ -913,7 +919,7 @@ void main() { <i class="conum" data-value="2"></i><b>(2)</b>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Compiles the code.<br>
-The code is output to the <code>target</code> directory.</td>
+The bytecode is output to the <code>target</code> directory.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -948,14 +954,15 @@ The code is output to the <code>target</code> directory.</td>
 <div id="_tabs_3_java_unnamed_classes--panel" class="tabpanel" aria-labelledby="_tabs_3_java_unnamed_classes">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java Main.java <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java Hello.java <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Compiles the file, stores the bytecode in memory and runs the program</td>
+<td>Compiles the file, stores the bytecode in memory and runs the program.<br>
+To run this program, you need to have JDK 21 early release installed and run the following command: <code>java --source 21 --enable-preview Main.java</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -1153,23 +1160,23 @@ It identifies the module and acts as a prefix for package import paths within th
 </ul>
 </div>
 <div id="_tabs_4_go--panel" class="tabpanel" aria-labelledby="_tabs_4_go">
-<div class="exampleblock">
-<div class="content">
 <div class="listingblock">
 <div class="title">Create the module</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go mod init example.com/greetings</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir greetings
+cd greetings
+go mod init example.com/greetings</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Implement the functionality</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package greeting
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">package greetings
 
 import "fmt"
 
-func Hello(name string) string { <i class="conum" data-value="1"></i><b>(1)</b>
-    message := fmt.Sprintf("Hi, %v. Welcome!", name) <i class="conum" data-value="2"></i><b>(2)</b>
+func Hello(name string) string { <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+    message := fmt.Sprintf("Hi, %v. Welcome!", name) <i class="conum" data-value="3"></i><b>(3)</b>
     return message
 }</code></pre>
 </div>
@@ -1179,10 +1186,15 @@ func Hello(name string) string { <i class="conum" data-value="1"></i><b>(1)</b>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>A function whose name starts with a capital letter can be called by a function that is not in the same package.<br>
-This is known as an exported name.</td>
+This is known as an exported name.<br>
+<span class="red">This is in my opinion not a good idea: an access modifier or an export statment is clearer.</span></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A function declaration is of the form: <code>func function_name(parameter_name parameter_type) return_type</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td><code>:=</code> declares and initializes a variable in one line.<br>
 The type is inferred.<br>
 This is an alternative to :<br>
@@ -1192,11 +1204,7 @@ This is an alternative to :<br>
 </table>
 </div>
 </div>
-</div>
-</div>
 <div id="_tabs_4_java--panel" class="tabpanel" aria-labelledby="_tabs_4_java">
-<div class="exampleblock">
-<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package greeting;
@@ -1207,8 +1215,6 @@ public class Hello {
         return message;
     }
 }</code></pre>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1230,12 +1236,12 @@ public class Hello {
 </ul>
 </div>
 <div id="_tabs_5_go--panel" class="tabpanel" aria-labelledby="_tabs_5_go">
-<div class="exampleblock">
-<div class="content">
 <div class="listingblock">
 <div class="title">Create the module</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go mod init example.com/hello</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir hello
+cd hello
+go mod init example.com/hello</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1262,6 +1268,35 @@ func main() {
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="title">Update the <code>hello</code> module to use the local <code>greetings</code> module</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">go mod edit -replace example.com/greetings=../greetings <i class="conum" data-value="1"></i><b>(1)</b>
+go mod tidy <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the local module</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Synchronize <code>go.mod</code> file and source code.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title"><code>hello/go.mod</code> file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">module example.com/hello
+
+go 1.20
+
+replace example.com/greetings =&gt; ../greetings
+
+require example.com/greetings v0.0.0-00010101000000-000000000000</code></pre>
 </div>
 </div>
 </div>
@@ -1270,6 +1305,34 @@ func main() {
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_run_the_program">Run the program</h3>
+<div id="_tabs_6" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_6_go" class="tab">
+<p>Go</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_6_go--panel" class="tabpanel" aria-labelledby="_tabs_6_go">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd hello
+go run .</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_error_handling">Error Handling</h2>
+<div class="sectionbody">
+
 </div>
 </div>
 <div class="sect1">
@@ -1335,7 +1398,7 @@ func main() {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-24 14:01:06 -0400
+Last updated 2023-05-30 16:14:50 -0400
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

@@ -29,7 +29,11 @@ Java::
 +
 [source, sh]
 ----
-mvn archetype:generate -DgroupId=com.micasa.tutorials -DartifactId=example.go -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false <1>
+mvn archetype:generate 
+        -DarchetypeArtifactId=maven-archetype-quickstart 
+        -DgroupId=com.micasa.tutorials 
+        -DartifactId=example.go 
+        -DinteractiveMode=false <1>
 ----
 <1> Generate a sample Maven project
 +
@@ -97,7 +101,7 @@ package com.micasa.tutorials; <1>
 
 public class Hello { <4>
     public static void main(String[] args) { <3>
-        System.out.println( "Hello World!" );
+        System.out.println("Hello World!");
     }
 }
 ----
@@ -116,7 +120,7 @@ Java Single-File::
 
 public class Hello {
     public static void main(String[] args) {
-        System.out.println( "Hello World!" );
+        System.out.println("Hello World!");
     }
 }
 ----
@@ -125,11 +129,11 @@ public class Hello {
 Java Unnamed Classes::
 +
 [source, java]
-.`Main.java`
+.`Hello.java`
 ----
 <1>
 void main() { <2>
-    System.out.println( "Hello World!" );
+    System.out.println("Hello World!");
 }
 ----
 <1> No class declaration
@@ -156,7 +160,7 @@ mvn compile <1>
     exec:java -Dexec.mainClass="com.micasa.tutorials.Hello" <2> <3>
 ----
 <1> Compiles the code. +
-The code is output to the `target` directory.
+The bytecode is output to the `target` directory.
 <2> Uses the https://www.mojohaus.org/exec-maven-plugin/[Exec Maven Plugin] to run the `main` method
 <3> This command must be run from the directory that contains the `pom.xml` file
 
@@ -173,8 +177,9 @@ Java Unnamed Classes::
 +
 [source, sh]
 ----
-java Main.java <1> <2>
+java Hello.java <1> <2>
 ----
-<1> Compiles the file, stores the bytecode in memory and runs the program
+<1> Compiles the file, stores the bytecode in memory and runs the program. +
+To run this program, you need to have JDK 21 early release installed and run the following command: `java --source 21 --enable-preview Main.java`
 <2> This command must be run from the directory that contains the `Hello.java` file
 ======

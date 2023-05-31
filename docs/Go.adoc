@@ -5,6 +5,7 @@
 :source-highlighter:    highlightjs
 :source-language:       go
 :imagesdir:             ./res
+:sourcedir:             ../..
 :toc2:
 :toclevels:             5
 :icons:                 font
@@ -21,6 +22,8 @@ include::sections/Hello-World.adoc[leveloffset=+1]
 include::sections/External-Package.adoc[leveloffset=+1]
 
 include::sections/Module.adoc[leveloffset=+1]
+
+include::sections/Error-Handling.adoc[leveloffset=+1]
 
 == Resources
 
